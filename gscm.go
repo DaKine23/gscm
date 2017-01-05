@@ -19,7 +19,9 @@ func main() {
 
 	argsWithoutProg := os.Args[1:]
 
-	towrite := data{}
+	towrite := data{
+		status: `""`,
+	}
 
 	for i, v := range argsWithoutProg {
 		switch i {
@@ -92,19 +94,19 @@ func revision() string {
 func writefile(d data) {
 
 	rawdata := []byte{}
-	rawdata = append(rawdata, []byte("{\n\t")...)
-	rawdata = append(rawdata, []byte(`"url": `)...)
-	rawdata = append(rawdata, d.url...)
-	rawdata = append(rawdata, []byte("\n\t")...)
-	rawdata = append(rawdata, []byte(`"revision": `)...)
-	rawdata = append(rawdata, d.revision...)
-	rawdata = append(rawdata, []byte("\n\t")...)
+	rawdata = append(rawdata, []byte("{")...)
 	rawdata = append(rawdata, []byte(`"author": `)...)
 	rawdata = append(rawdata, d.author...)
-	rawdata = append(rawdata, []byte("\n\t")...)
+	rawdata = append(rawdata, []byte(", ")...)
+	rawdata = append(rawdata, []byte(`"url": `)...)
+	rawdata = append(rawdata, d.url...)
+	rawdata = append(rawdata, []byte(", ")...)
+	rawdata = append(rawdata, []byte(`"revision": `)...)
+	rawdata = append(rawdata, d.revision...)
+	rawdata = append(rawdata, []byte(", ")...)
 	rawdata = append(rawdata, []byte(`"status": `)...)
 	rawdata = append(rawdata, d.status...)
-	rawdata = append(rawdata, []byte("\n}")...)
+	rawdata = append(rawdata, []byte("}")...)
 
 	fmt.Println(string(rawdata))
 
