@@ -28,13 +28,13 @@ func main() {
 				writehelp()
 				return
 			}
-			towrite.author = v
+			towrite.author = `"` + v + `"`
 		case 1:
-			towrite.url = v
+			towrite.url = `"` + v + `"`
 		case 2:
-			towrite.revision = v
+			towrite.revision = `"` + v + `"`
 		case 3:
-			towrite.status = v
+			towrite.status = `"` + v + `"`
 		}
 	}
 	if len(towrite.author) == 0 {
